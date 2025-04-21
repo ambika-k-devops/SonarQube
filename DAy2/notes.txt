@@ -1,0 +1,190 @@
+How to execute the sonarqube report for our java projects?
+==========================================================
+
+step 1: connect to the server , where your java projects are available.
+
+step 2: update the pom.xml with sonarqube details.
+
+        <properties>
+                <sonar.host.url>http://13.235.50.5:9000</sonar.host.url>
+                <sonar.login>admin</sonar.login>
+                <sonar.password>password</sonar.password>
+        </properties>
+step 3: generate the sonarqube report
+
+  mvn sonar:sonar    [pluginName:goalName] 
+
+
+step 4: go to sonarqube server GUI , click on projects tab , where you can see the project.
+
+step 5: Open the project to see complete report.
+
+
+
+sudo yum install java-11-openjdk-devel
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+
+====================================================================================================
+
+Requirement: Instead of user_name and password hard coded in pom.xml , How to use the SQ server token.
+
+sol: 
+step 1:
+
+Goto adminstration --> security --> users --> click on tokens -->  Give the name --> click on generate---> copy [squ_339becfebb58026cd7ce7b3f16925730d4dd0da4] 
+
+step 2:  squ_339becfebb58026cd7ce7b3f16925730d4dd0da4
+update your token in pom.xml
+
+  <properties>
+                <sonar.host.url>http://43.205.231.25:9000</sonar.host.url>
+                <!-- 
+                <sonar.login>admin</sonar.login>
+                <sonar.password>kkfunda</sonar.password> 
+                -->
+               <sonar.login>squ_339becfebb58026cd7ce7b3f16925730d4dd0da4</sonar.login>
+    
+
+     </properties>
+
+step 3: Generate again:  mvn clean sonar:sonar
+
+
+====================================================================================================
+
+
+
+How to change the sonarQuber server port number?
+------------------------------------------------
+--> Default port number is : 9000
+--> Default context path: / 
+
+step 1: goto  cd /opt/sonarqube/conf
+
+step 2: vi sonar.properties  --> remove comment and add port and context path
+
+    105  sonar.web.context=/kkfunda
+    107  sonar.web.port=8639
+
+step 3: /opt/sonarqube/bin/linux-x86-64
+
+step 4: sh sonar.sh restart
+
+
+
+====================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Projects
+---------
+It displays all the projects.
+
+issues
+-------
+It will diaplays all the project issues.
+
+Rules
+-----
+For each programming language we have rules.
+
+Quality Profile
+---------------
+-> Collection of rules , those can be applied during the sonarqube generation.
+-> For each language one quality profile will be there
+
+IQ] Is it possible to create a custom quality profile?
+ANs: Yes
+
+step 1: 
+
+Quality profiles --> create --> name [jio-qp] --> language [java] --> Parent [none] --> save
+
+step 2: 
+
+Goto quality profile --> check under java --> It will be created.
+
+step 3: Assign that quality profile to the project.
+
+Go to project --> select project --> project settings --> quality profiles --> java change profile --> Always use specific quality profile --> save 
+
+
+step 4: Now you can build : mvn clean sonar:sonar
+
+
+
+quality gates
+--------------
+--> set of conditions
+
+--> By default one quality gate is avaiable, i.e Sonar way
+
+How to create a quality gate?
+-----------------------------
+
+step 1: 
+
+Quality gates --> create --> name[jio-qg] -->save --> Add condition --> on overall code --> qg fails wahen --> coverage [80%] --> add --> 
+
+Add condition --> on overall code --> qg fails wahen --> Duplicate lines [3%] --> add 
+
+
+step 2:
+
+Go to project --> select project --> project settings --> quality gate --> java change profile --> Always use specific quality gate --> save 
+
+step 3: go and run the sonarqube report [mvn sonar:sonar]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adminstration
+=============
+
+configuration
+-------------
+languages --> selct different languages --> and see the extensions
+
+security 
+--------
+security --> users --> create user --> give the details --> create 
+
+--> Then login with new credentials.
+
+How to give admin access to normal user?
+
+--> login with admin --> security --> users --> give sonar-admin access to normal user --> click on groups--> select all --> give admin access --> then login with user details.
+
+How to create a groups?
+
+--> login with admin --> security --> 
