@@ -213,7 +213,6 @@ graph LR
 
     * Username: `admin`
     * Password: `admin` (Change on first login)
-    * It will ask to change the password
 
 ---
 
