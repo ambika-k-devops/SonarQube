@@ -1,225 +1,197 @@
-# SonarQube by KK FUNDA
+# 🚀 SonarQube by KK FUNDA
 
-## Flow Diagram Explanation
+---
 
-**Before Maven and Tomcat —> SonarQube**
+## 🌍 Flow Overview: Before Maven & Tomcat → SonarQube
 
-* SonarQube should be installed and running before Maven and Tomcat integrations.
-* Maven projects can be configured to run static analysis using the SonarQube plugin.
-* After SonarQube is running, the Maven project can push analysis results to the SonarQube server.
-* Tomcat is typically used for deploying Java web applications. SonarQube improves quality before deployment by analyzing the source code.
+```mermaid
+graph LR
+  A[Developer Code] --> B[Push to Repository]
+  B --> C[Maven Build]
+  C --> D[Run SonarQube Analysis]
+  D --> E[Send Results to SonarQube Server]
+  E --> F[Deploy via Tomcat]
+```
 
-## Definition
+* **SonarQube sits between development and deployment** to ensure only high-quality code is pushed forward.
 
-* SonarQube is an open-source platform used for continuous inspection of code quality.
-* It performs static code analysis to identify bugs, vulnerabilities, and code smells in your code.
+---
 
-## Key Features
+## 🔍 What is SonarQube?
 
-### Code Quality and Security
+> SonarQube is an **open-source platform** for **continuous inspection** of code quality.
 
-* **Bugs and Vulnerabilities**: Detect and fix issues that might lead to bugs or security vulnerabilities.
-* **Code Smells**: Identify maintainability issues in your code.
-* **Code Coverage**: Measure how much of your code is covered by tests.
-* **Duplication**: Detect duplicate code blocks.
-* **Technical Debt**: Estimate the effort required to fix all the issues in the code.
+* Performs **static code analysis** to identify:
 
-### Multi-Language Support
+  * Bugs
+  * Vulnerabilities
+  * Code Smells
 
-* Supports a wide range of programming languages including Java, JavaScript, C#, C++, Python, PHP, and many more.
+---
 
-### Quality Gates
+## 📊 Key Features
 
-* Set thresholds for quality metrics to ensure code meets the standards before it is integrated into the main branch.
+### 🛡️ Code Quality & Security
 
-## Similar Tools
+* ✉ **Bugs & Vulnerabilities**: Prevent potential production issues
+* ⚡ **Code Smells**: Improve maintainability
+* 📈 **Code Coverage**: Check test coverage
+* ♻️ **Duplication**: Reduce redundant code
+* ⏳ **Technical Debt**: Estimate effort to improve codebase
 
-* SonarQube
-* Checkmarx
-* Coverity
-* Fortify Static Code Analyzer (SCA)
-* Veracode
-* PMD
-* ESLint
-* FindBugs/SpotBugs
-* StyleCop
-* Pylint
-* ReSharper
-* Flake8
-* Codacy
-* CodeClimate
-* DeepSource
-* Semmle LGTM
-* Klocwork
-* Infer
-* Bandit
-* Rubocop
-* Brakeman
+### 📚 Multi-Language Support
 
-## Difference Between Code Review and Code Coverage
+> Java, JavaScript, Python, C#, C++, PHP, and many more
 
-### Code Coverage
+### 🏛 Quality Gates
 
-* Refers to the number of lines tested through unit test cases.
-* Industry standard requires \~80% code coverage.
-* **Benefits**: Helps identify untested areas of code.
-* **Tools**: JaCoCo (Java), Istanbul (JavaScript), etc.
+* Define pass/fail criteria based on coverage, duplication, and critical issues
 
-### Code Review
+---
 
-* Manual review of code by team members.
-* Focused on finding bugs, ensuring adherence to coding standards, and improving code quality.
-* **Benefits**: Leads to better software quality, promotes best practices.
-* **Tools**: GitHub Pull Requests, Bitbucket, GitLab Merge Requests.
+## 📄 Similar Tools to SonarQube
 
-## SonarQube Introduction
+| Static Analysis | Linters & Style Checkers |
+| --------------- | ------------------------ |
+| Checkmarx       | PMD                      |
+| Coverity        | ESLint                   |
+| Fortify SCA     | StyleCop                 |
+| Veracode        | Pylint, Flake8           |
+| Semmle LGTM     | Rubocop, Brakeman        |
+| Codacy          | ReSharper, Infer         |
 
-* **Type**: Continuous Code Quality
+---
+
+## 📝 Code Review vs. Code Coverage
+
+| Category | Code Review                            | Code Coverage                |
+| -------- | -------------------------------------- | ---------------------------- |
+| Method   | Manual peer review                     | Automated via test execution |
+| Goal     | Ensure quality, readability, standards | Check which lines are tested |
+| Benefits | Fewer bugs, better practices           | Identify untested paths      |
+| Tools    | GitHub PRs, Bitbucket                  | JaCoCo, Istanbul, Clover     |
+
+---
+
+## 🧰 SonarQube Introduction
+
+* **Type**: Continuous Code Quality Tool
 * **Vendor**: Sonar
-* **Is it open-source?**: Yes (for some languages)
+* **License**: Open source (for most languages)
 * **Version**: 9.x
-* **Supported OS**: Cross-platform (Linux, Windows, macOS)
-* **Executable Software?**: No, downloaded as a zip and extracted
+* **Platform**: Cross-Platform (Linux, macOS, Windows)
+* **Installer**: ZIP package (not executable)
 
-**Download Link**: [SonarQube Downloads](https://www.sonarsource.com/products/sonarqube/downloads/)
+[Download SonarQube ⬇️](https://www.sonarsource.com/products/sonarqube/downloads/)
 
-## More Information About SonarQube
+---
 
-* Previously called "Sonar"
-* Continuously analyzes and measures code quality
-* Generates reports in HTML/PDF formats
-* Initially developed for Java; now supports many languages
-* Supports multiple operating systems and browsers
-* Compatible with databases like MySQL, Oracle, PostgreSQL, etc.
-* Identifies issues like:
+## 📚 Detailed Info
 
-  * Duplicate code
-  * Coding standards violations
-  * Missing/insufficient unit tests
-  * Complex code
-  * Missing/inadequate comments
-  * Potential bugs (e.g., exception handling)
+* Originally named **Sonar**
+* Supports multiple languages & databases
+* Produces **HTML/PDF reports**
+* Integrates with multiple browsers
+* Detects:
 
-> **Note**: With SonarQube reports, deployments can be halted if quality criteria are not met.
+  1. Duplicate Code
+  2. Standards Violations
+  3. Unit Test Gaps
+  4. Complex Code
+  5. Poor Commenting
+  6. Potential Bugs
 
-## Prerequisites for SonarQube Installation
+> ⚠️ SonarQube can block deployments based on report failures
 
-### 1. Hardware Requirements
+---
 
-* **CPU**: Modern multi-core processor
-* **RAM**: At least 2GB (4GB recommended); use t2.medium for AWS
-* **Disk Space**: 1GB for SonarQube + additional for DB
+## 🚀 Prerequisites for Installation
 
-### 2. Software Requirements
+### Hardware ⚙️
 
-#### Operating System
+* CPU: Multi-core
+* RAM: Min 2GB (Recommended: 4GB)
+* Disk: 1GB+ free
 
-* Linux (preferred)
-* Windows
-* macOS
+### Software 🌐
 
-#### Java
+* **OS**: Linux (preferred), Windows, macOS
+* **Java**: JDK 11 or 17 *(set JAVA\_HOME)*
+* **DB**: PostgreSQL, Oracle, SQL Server *(MySQL deprecated)*
+* **Optional**: H2 embedded DB for testing
 
-* Java JDK 11 or 17 (not just JRE)
-* Set `JAVA_HOME` environment variable
+---
 
-#### Database
+## 🛠️ SonarQube Installation Guide
 
-* Supported: Oracle, PostgreSQL, MS SQL Server
-* **MySQL Removed**
-* Built-in H2 database (for demo/testing)
+1. **Launch EC2 (t2.medium)**
+2. **Connect via SSH**
+3. **Switch to root**
 
-## SonarQube Installation Steps
-
-1. **Launch EC2 Instance**: Use t2.medium (4GB RAM)
-
-2. **Connect to Server**
-
-3. **Switch to Root User**:
-
-   ```sh
+   ```bash
    sudo su -
    ```
+4. **Install Java**
 
-4. **Install Java**:
-
-   ```sh
+   ```bash
    sudo yum install java-11-openjdk-devel -y
    javac --version
    ```
+5. **Navigate to /opt**
 
-5. **Navigate to /opt Directory**:
-
-   ```sh
+   ```bash
    cd /opt
    ```
+6. **Install Utilities**
 
-6. **Install Utilities**:
-
-   ```sh
+   ```bash
    yum install wget unzip -y
    ```
+7. **Download SonarQube**
 
-7. **Download SonarQube**:
-
-   ```sh
+   ```bash
    wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.6.1.59531.zip
-   ```
-
-8. **Unzip and Rename Directory**:
-
-   ```sh
    unzip sonarqube-9.6.1.59531.zip
    mv sonarqube-9.6.1.59531 sonarqube
    ```
+8. **Create Non-root Sonar User**
 
-9. **Create Sonar User**:
-
-   ```sh
+   ```bash
    useradd sonar
+   visudo
+   # Add: sonar   ALL=(ALL) NOPASSWD: ALL
    ```
+9. **Change Permissions**
 
-10. **Grant Sudo Access**:
+   ```bash
+   chown -R sonar:sonar /opt/sonarqube/
+   chmod -R 775 /opt/sonarqube/
+   su - sonar
+   cd /opt/sonarqube/bin/linux-x86-64/
+   ```
+10. **Manage SonarQube**
 
-    ```sh
-    visudo
-    # Add the following line:
-    sonar   ALL=(ALL)       NOPASSWD: ALL
+    ```bash
+    sh sonar.sh start | status | stop | restart
     ```
+11. **Access Web UI**
 
-11. **Set Permissions**:
-
-    ```sh
-    chown -R sonar:sonar /opt/sonarqube/
-    chmod -R 775 /opt/sonarqube/
-    su - sonar
-    cd /opt/sonarqube/bin/linux-x86-64/
-    ```
-
-12. **Start/Stop SonarQube**:
-
-    ```sh
-    sh sonar.sh start
-    sh sonar.sh status
-    sh sonar.sh stop
-    sh sonar.sh restart
-    ```
-
-13. **Access SonarQube in Browser**:
-
-    * Default Port: `9000`
     * URL: `http://<your-ip>:9000`
-    * Ensure port 9000 is open in firewall/security group
-
-14. **Login Credentials**:
+    * Port: `9000` (Allow in security group)
+12. **Login**
 
     * Username: `admin`
-    * Password: `admin`
-    * You will be prompted to change the password
+    * Password: `admin` (Change on first login)
 
-## Troubleshooting
+---
 
-1. Ensure Sonar user is used to start SonarQube
-2. Check if port 9000 is open
-3. Verify Java is installed and configured
-4. Use a machine with at least 4GB RAM (t2.medium or higher)
+## ⚠️ Troubleshooting Tips
+
+* Use **sonar** user to start service
+* Ensure **port 9000** is open
+* Check **Java installation**
+* Use machine with **4GB RAM** minimum
+
+---
+
+> ⭐ With SonarQube integrated, your CI/CD pipelines gain a powerful guard against bad code. Automate quality checks and build confidence in every release.
