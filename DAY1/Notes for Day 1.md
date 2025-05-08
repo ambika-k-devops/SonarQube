@@ -77,6 +77,20 @@ graph LR
 * **ESLint / Pylint / Rubocop**: For development-time linting and formatting.
 * **Codacy / CodeClimate**: Quick integration into GitHub with visual dashboards.
 
+### 🌟 Benefits Over SonarQube
+
+* **Checkmarx & Fortify**: Deeper security analysis (esp. OWASP Top 10)
+* **Veracode**: Scalable SaaS, ideal for remote teams
+* **LGTM**: GitHub-native analysis with query capabilities
+* **PMD, ESLint, Pylint**: Lightweight, fast local checks for devs
+
+### 🧩 Real-Time Use Cases
+
+* Checkmarx: Pre-production security checks in fintech
+* Coverity: Automotive firmware scanning
+* ESLint: JavaScript style enforcement in front-end apps
+* Codacy: Dashboard for small startups tracking quality in real-time
+
 ---
 
 ## 📝 Code Review vs. Code Coverage
@@ -199,6 +213,7 @@ graph LR
 
     * Username: `admin`
     * Password: `admin` (Change on first login)
+    * It will ask to change the password
 
 ---
 
