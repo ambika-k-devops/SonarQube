@@ -16,7 +16,7 @@ means you're using a **Java Runtime (JDK 8)** to run a plugin (Sonar Maven Plugi
 
 ---
 
-### ✅ Steps to Resolve the Issue
+### ✅ Steps to Resolve the Issue In Ubanu
 
 1. **Upgrade your Java version to Java 11 or newer**:
 
@@ -59,5 +59,74 @@ means you're using a **Java Runtime (JDK 8)** to run a plugin (Sonar Maven Plugi
    ```
 
 ---
-
 Let me know if you're working in a Docker container or CI environment, and I can give you environment-specific instructions.
+
+Sure! Here are the commands to **upgrade to Java 11** and configure it on a **Red Hat Enterprise Linux (RHEL)** machine:
+
+---
+
+### ✅ Step-by-Step Commands for RHEL
+
+#### 1. **Install OpenJDK 11**
+
+```bash
+sudo yum install java-11-openjdk-devel -y
+```
+
+#### 2. **Set Java 11 as the default**
+
+```bash
+sudo alternatives --config java
+```
+
+* You'll see a list of installed Java versions.
+* Enter the number corresponding to `java-11-openjdk`.
+
+#### 3. **Set `JAVA_HOME` environment variable**
+
+Add this to your shell config (e.g., `.bashrc`, `.bash_profile`, or `.zshrc`):
+
+```bash
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+Then apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+#### 4. **Verify Java version**
+
+```bash
+java -version
+```
+
+Expected output:
+
+```
+openjdk version "11.x.x" ...
+```
+
+#### 5. **Verify Maven uses Java 11**
+
+```bash
+mvn -v
+```
+
+Expected:
+
+```
+Java version: 11
+```
+
+---
+
+Now you can rerun the SonarQube analysis:
+
+```bash
+mvn clean verify sonar:sonar
+```
+
+Do you also need to install Maven or SonarQube Scanner on this machine?
