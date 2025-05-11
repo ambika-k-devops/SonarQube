@@ -1,6 +1,7 @@
-* Version Compatability *
-* Build Failure Reason *
-The error you're encountering:
+* Version Compatability 
+* Build Failure Reason
+  
+--> The error you're encountering:
 
 ```
 SonarQubeMojo has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
