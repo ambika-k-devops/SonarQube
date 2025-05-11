@@ -1,4 +1,4 @@
-### Java Installation, Swtiching from Java 8 to Java 11 inside maven for sonarqube report generation
+# Java Installation, Switching from Java 8 to Java 11 inside maven for sonarqube report generation
 ## To Install Java 11
 sudo yum install java-11-openjdk-devel -y
 ## To Install Java 8
