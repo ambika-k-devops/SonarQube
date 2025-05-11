@@ -1,3 +1,9 @@
+### Java Installation, Swtiching from Java 8 to Java 11 inside maven for sonarqube report generation
+## To Install Java 11
+sudo yum install java-11-openjdk-devel -y
+## To Install Java 8
+sudo yum remove java-1.8.0-openjdk-devel -y
+- -----------------------------------------------------------------------------
 You're on the right track using the `alternatives` command to switch between Java versions. However, there's a bit of nuance:
 
 ### Key Points:
